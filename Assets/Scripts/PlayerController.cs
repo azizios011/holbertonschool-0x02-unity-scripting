@@ -5,7 +5,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public float Speed = 5f; // Public variable to adjust player speed in Inspector
+    private int score = 0;
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pickup"))
+        {
+            score++;
+
+            Debug.Log("Score: " + score);
+
+            other.gameObject.SetActive(false);
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
 	{
