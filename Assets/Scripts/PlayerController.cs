@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.Build.AssetBundle;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -55,4 +57,21 @@ public class PlayerController : MonoBehaviour {
         // Move the player
         GetComponent<Rigidbody>().velocity = movement * Speed;
 	}
+    // Update is called once per frame.
+    void Update()
+    {
+        // Check if health equals 0.
+        if (health == 0)
+        {
+            // Log "Game Over!" message to the console.
+            Debug.Log("Game Over!");
+
+            // Reload the scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            // Reset player's health and score.
+            health = 5;
+            score = 0;
+        }
+    }
 }
