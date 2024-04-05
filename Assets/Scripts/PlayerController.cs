@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Health: " + health);
             // Also we can add logic here to handle player death if health reaches 0
         }
+        else if (other.CompareTag("Goal"))
+        {
+            // Display "You win!" message to the console.
+            Debug.Log("You win!");
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
