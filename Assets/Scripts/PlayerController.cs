@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public float Speed = 5f; // Public variable to adjust player speed in Inspector
     private int score = 0;
     public int health = 5;
+    GameObject[] teleporter;
 
     void OnTriggerEnter(Collider other)
     {
@@ -38,10 +39,26 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Health: " + health);
             // Also we can add logic here to handle player death if health reaches 0
         }
+        // Check if the collided object is tagged as "Goal".
         else if (other.CompareTag("Goal"))
         {
             // Display "You win!" message to the console.
             Debug.Log("You win!");
+        }
+        // Check if the collided object is tagged as "Teleporter".
+        else if (other.CompareTag("Teleporter"))
+        {
+            // Find the other Teleporter by checking which one the player collided with a Tag.
+            teleporter = GameObject.FindGameObjectsWithTag("Teleporter");
+            foreach (GameObject teleporter in teleporter)
+            {
+                if (teleporter != other.gameObject)
+                {
+                    // Teleport the player to the position of the other Teleporter.
+                    transform.position = teleporter.transform.position;
+                    break;
+                }
+            }
         }
     }
     // Update is called once per frame
