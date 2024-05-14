@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         vInput = Input.GetAxis("Vertical");
         HzInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.forward * Time.deltaTime * vInput);
-        transform.Translate(Vector3.right * Time.deltaTime * HzInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * vInput * Speed);
+        transform.Translate(Vector3.right * Time.deltaTime * HzInput * Speed);
     }
 }
