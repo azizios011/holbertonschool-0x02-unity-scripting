@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150a3ac221039614eaa6a0c2c7f18844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 25
   Player: {fileID: 0}
   vInput: 0
   HzInput: 0
