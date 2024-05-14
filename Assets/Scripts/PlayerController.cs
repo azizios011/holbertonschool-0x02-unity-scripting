@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    // pre frame
     private void Update()
     {
         vInput = Input.GetAxis("Vertical");
