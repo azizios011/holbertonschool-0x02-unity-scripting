@@ -47,5 +47,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Health: " + health);
             // Also we can add logic here to handle player death if health reaches 0.
         }
+        // Check if the collided object is tagged as "Goal".
+        else if (other.CompareTag("Goal"))
+        {
+            // Display "You win!" message to the console.
+            Debug.Log("You win!");
+        }
     }
 }
