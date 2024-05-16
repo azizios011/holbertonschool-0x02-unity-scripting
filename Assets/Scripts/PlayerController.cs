@@ -4,22 +4,15 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Speed;
-    public GameObject Player;
-    public float vInput;
-    public float HzInput;
+    public float Speed = 5.0f;
 
-    private void Start()
+    private void FixedUpdate()
     {
-        
-    }
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-    // pre frame
-    private void Update()
-    {
-        vInput = Input.GetAxis("Vertical");
-        HzInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.forward * Time.deltaTime * vInput * Speed);
-        transform.Translate(Vector3.right * Time.deltaTime * HzInput * Speed);
+        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+
+        GetComponent<Rigidbody>().linearVelocity = movement * Speed;
     }
 }
