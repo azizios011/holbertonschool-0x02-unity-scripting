@@ -55,6 +55,30 @@ public class PlayerController : MonoBehaviour
             // Display "You win!" message to the console.
             Debug.Log("You win!");
         }
+        // Check if the collided object is tagged as "Teleporter".
+        else if (other.CompareTag("Teleporter"))
+        {
+            GameObject[] teleporters = GameObject.FindGameObjectsWithTag("Teleporter");
+
+            // Shuffle the teleporters array
+            for (int i = 0; i < teleporters.Length; i++)
+            {
+                GameObject temp = teleporters[i];
+                int randomIndex = Random.Range(i, teleporters.Length);
+                teleporters[i] = teleporters[randomIndex];
+                teleporters[randomIndex] = temp;
+            }
+            // Find the other Teleporter by checking which one the player collided with a Tag.
+            foreach (GameObject teleporter in teleporters)
+            {
+                if (teleporter != other.gameObject)
+                {
+                    // Teleport the player to the position of the other Teleporter.
+                    transform.position = teleporter.transform.position;
+                    break;
+                }
+            }
+        }
     }
 
     // Update is called once per frame.
