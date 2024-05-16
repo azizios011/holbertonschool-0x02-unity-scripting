@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    // Public variable to adjust player speed in Inspector
     public float Speed = 5.0f;
+    public int score = 0;
 
     private void FixedUpdate()
     {
@@ -14,5 +16,25 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
         GetComponent<Rigidbody>().linearVelocity = movement * Speed;
+    }
+
+    // Check if the collided object is tagged as "Pickup".
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pickup"))
+        {
+            // Increment score.
+            score++;
+
+            // Log the updated score to the console
+            Debug.Log("Score: " + score);
+
+            // Disable or destroy the coin object
+            // You can choose either option based on your requirements
+            // For example, to disable the coin:
+            other.gameObject.SetActive(false);
+            // Or to destroy the coin:
+            // Destroy(other.gameObject);
+        }
     }
 }
